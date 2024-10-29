@@ -1,0 +1,48 @@
+# Исключить виртуальное окружение
+venv/
+env/
+
+# Игнорировать настройки редактора
+.vscode/
+.idea/
+
+# Файлы конфигурации и среды
+*.env
+*.env.*
+
+# Кэш Python файлов
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Логи и дампы
+*.log
+*.sqlite3
+*.db
+
+# Uvicorn, временные и служебные файлы
+*.pid
+*.pyc
+
+# Файлы тестов и отчетов
+.coverage
+*.cover
+htmlcov/
+.tox/
+.nox/
+dist/
+build/
+site/
+
+# Конфигурации Docker (если используете)
+docker-compose.override.yml
+docker-compose.prod.yml
+
+# Секретные файлы
+secret/
+.key/
+
+# Другие IDE и редакторы
+*.sublime*
+*.swp
+*.swo
