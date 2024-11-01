@@ -2,6 +2,8 @@ import os
 
 from starlette.responses import StreamingResponse, Response
 
+from config.Database import getConnection
+
 AUDIO_DIR = "audio"
 
 
@@ -19,5 +21,33 @@ async def stream_music(filename: str):
 
 
 async def track_list():
-    tracks = [f for f in os.listdir(AUDIO_DIR) if os.path.isfile(os.path.join(AUDIO_DIR, f))]
+    db = getConnection()
+    cursor = db.cursor()
+
+    # Запрос к базе данных для получения информации о треках
+    query = """
+    SELECT id, title, description, duration, file_url
+    FROM media_items
+    """
+
+    cursor.execute(query)
+    # Извлекаем все строки из результата запроса
+    rows = cursor.fetchall()
+
+    # Преобразуем результат в список словарей
+    tracks = [
+        {
+            "id": row[0],
+            "title": row[1],
+            "description": row[2],
+            "duration": row[3],
+            "file_url": row[4],
+        }
+        for row in rows
+    ]
+
+    # Закрываем соединение
+    cursor.close()
+    db.close()
+
     return {"tracks": tracks}

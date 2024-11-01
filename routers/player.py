@@ -7,11 +7,11 @@ router = APIRouter()
 
 @router.get("/audio/{filename}", tags=["Player"])
 async def stream_audio(filename: str):
-    streaming_response = stream_music(filename)
+    streaming_response = await stream_music(filename)
     return streaming_response
 
 
 @router.get("/tracks", tags=["Player"])
 async def list_tracks():
-    tracks = track_list()
+    tracks = await track_list()
     return tracks
