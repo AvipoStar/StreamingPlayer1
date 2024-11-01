@@ -26,7 +26,7 @@ async def track_list():
 
     # Запрос к базе данных для получения информации о треках
     query = """
-    SELECT id, title, description, duration, file_url
+    SELECT id, title, description, duration, file_url, cover_url 
     FROM media_items
     """
 
@@ -42,6 +42,7 @@ async def track_list():
             "description": row[2],
             "duration": row[3],
             "file_url": row[4],
+            "cover_url": row[5],
         }
         for row in rows
     ]

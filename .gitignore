@@ -41,6 +41,7 @@ docker-compose.prod.yml
 # Секретные файлы
 secret/
 .key/
+config/Database.py
 
 # Другие IDE и редакторы
 *.sublime*
